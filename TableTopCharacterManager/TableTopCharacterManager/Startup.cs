@@ -24,6 +24,8 @@ namespace TableTopCharacterManager
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
             services.AddDbContext<TableTopCharacterManagerContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("TableTopCharacterManagerContext")));
         }
@@ -35,6 +37,10 @@ namespace TableTopCharacterManager
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
+
+            app.UseMvcWithDefaultRoute();
 
             app.Run(async (context) =>
             {
