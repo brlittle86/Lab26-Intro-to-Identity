@@ -1,7 +1,11 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
+﻿@model List<TableTopCharacterManager.Models.Character>
+
+@foreach (var item in Model)
+{
+    if (item.IsAlive)
+    {
+        <h1>@item.CharacterName</h1>
+        <h2>@item.CharacterClass : @item.Level</h2>
+        <h2>@item.CharacterRace</h2>
+    }
 }
-
-<h2>Index</h2>
-

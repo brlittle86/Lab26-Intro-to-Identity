@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using TableTopCharacterManager.Models;
 
 namespace TableTopCharacterManager.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly TableTopCharacterManagerContext _context;
+
+        public HomeController(TableTopCharacterManagerContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var result = _context.Character.Where(c => c.CharacterName != null);
+            return View(result.ToList());
         }
     }
 }
